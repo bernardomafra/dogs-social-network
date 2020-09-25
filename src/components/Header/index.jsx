@@ -1,15 +1,20 @@
 import React from 'react' ;
 import styles from './header.module.css'
 import { Link } from 'react-router-dom'
+import {ReactComponent as DogsLogo} from '../../assets/dogs.svg' 
 const Heeader = () => {
-  return <div className={styles.header}>
-    <nav className="container">
-      <Link to="/" >Home</Link>
-      <Link to="/login" >Login / Criar</Link>
+  return <header className={styles.header}>
+    <nav className={`${styles.nav} container`}>
+      <Link className={styles.logo} to="/" aria-label="Dogs - Home"> 
+        <DogsLogo/>
+      </Link>
+      <Link className={styles.login} to="/login">
+         <span>Login / Criar</span> 
+      </Link>
     </nav>
   
 
-  </div>
+  </header>
 }
 
 export default Heeader;

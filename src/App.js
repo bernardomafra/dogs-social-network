@@ -1,9 +1,12 @@
 import React from 'react';
-import Home from './components/Home'
-import Header from './components/Header'
-import Login from './components/Login'
-import Footer from './components/Footer'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
+import './App.css';
+
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Header from './components/Header';
+import Login from './components/Login';
 function App() {
   return (
     <div>

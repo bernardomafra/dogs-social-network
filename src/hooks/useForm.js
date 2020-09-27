@@ -2,9 +2,9 @@ import React from 'react';
 
 const validationTypes = {
   email: {
-    regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    regex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    message: 'Preeencha um email válido',
   },
-  message: 'Preeencha um email válido',
 }
 
 const useForm = (validationType) => {
@@ -12,7 +12,6 @@ const useForm = (validationType) => {
   const [error, setError] = React.useState(null);
 
   function validate(value) {
-    console.log(`entrei [${value}]`)
     if (typeof validationType === undefined) return true;
     if (value.length === 0) {
       setError('Preencha um valor.');
@@ -30,6 +29,7 @@ const useForm = (validationType) => {
   }
 
   function onChange({ target }) {
+    if (error) validate(target.value)
     setValue(target.value);
   }
 

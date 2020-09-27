@@ -2,14 +2,25 @@ import React from 'react';
 import Button from '../../Button';
 import Input from '../../Input';
 import useForm from '../../../hooks/useForm'
+import { USER_POST } from '../../../services/api'
+import { UserContext } from '../../../contexts/UserContext';
 
 const LoginCreate = () => {
   const username = useForm();
   const email = useForm('email');
-  const password = useForm('password');
+  const password = useForm();
 
-  function handleSubmit(event) {
+  const { userLogin } = React.useContext(UserContext);
+
+  async function handleSubmit(event) {
     event.preventDefault();
+    const { url, options } = USER_POST({
+      username: username.value,
+      email: email.value,
+      password: password.value,
+    })
+    const response = await fetch(url, options);
+    if (response.ok) userLogin(username.value, password.value);
   }
 
   return (

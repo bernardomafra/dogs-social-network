@@ -1,15 +1,15 @@
-import React from 'react';
-import Button from '../../Button';
-import Input from '../../Input';
-import Error from '../../Error';
-import useForm from '../../../hooks/useForm'
-import { USER_POST } from '../../../services/api'
-import { UserContext } from '../../../contexts/UserContext';
-import useFecth from '../../../hooks/useFetch';
+import React from "react";
+import Button from "../../Button";
+import Input from "../../Input";
+import Error from "../../Error";
+import useForm from "../../../hooks/useForm";
+import { USER_POST } from "../../../services/api";
+import { UserContext } from "../../../contexts/UserContext";
+import useFecth from "../../../hooks/useFetch";
 
 const LoginCreate = () => {
   const username = useForm();
-  const email = useForm('email');
+  const email = useForm("email");
   const password = useForm();
 
   const { userLogin } = React.useContext(UserContext);
@@ -21,7 +21,7 @@ const LoginCreate = () => {
       username: username.value,
       email: email.value,
       password: password.value,
-    })
+    });
     const { response } = await request(url, options);
     if (response.ok) userLogin(username.value, password.value);
   }
@@ -34,12 +34,12 @@ const LoginCreate = () => {
         <Input label="Email" type="email" name="email" {...email} />
         <Input label="Senha" type="password" name="password" {...password} />
         <Button disabled={loading}>
-          {loading ? 'Cadastrando...' : 'Cadastrar'}
+          {loading ? "Cadastrando..." : "Cadastrar"}
         </Button>
         <Error error={error} />
       </form>
     </section>
-  )
-}
+  );
+};
 
 export default LoginCreate;

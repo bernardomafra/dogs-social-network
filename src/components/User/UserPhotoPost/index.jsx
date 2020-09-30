@@ -2,9 +2,11 @@ import React from "react";
 import styles from "./userphotopost.module.css";
 import Input from "../../Input";
 import Button from "../../Button";
+import Error from "../../Error";
 import useForm from "../../../hooks/useForm";
 import useFetch from "../../../hooks/useFetch";
 import { PHOTO_POST } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const UserPhotoPost = () => {
   const nome = useForm();
@@ -12,6 +14,11 @@ const UserPhotoPost = () => {
   const idade = useForm("number");
   const [img, setImg] = React.useState({});
   const { data, error, loading, request } = useFetch();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (data) navigate("/conta");
+  }, [data, navigate]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -47,7 +54,8 @@ const UserPhotoPost = () => {
           id="img"
           onChange={handleImgChange}
         />
-        <Button>Enviar</Button>
+        <Button disabled={loading}>{loading ? "Enviando..." : "Enviar"}</Button>
+        <Error error={error} />
       </form>
       <div>
         {img.preview && (

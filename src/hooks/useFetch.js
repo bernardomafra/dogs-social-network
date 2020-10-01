@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const useFecth = () => {
   const [data, setData] = React.useState(null);
@@ -21,14 +21,14 @@ const useFecth = () => {
       setLoading(false);
       return { response, json };
     }
-  })
+  }, []);
 
   return {
     data,
     loading,
     error,
-    request
-  }
-}
+    request,
+  };
+};
 
-export default useFecth
+export default useFecth;

@@ -4,6 +4,7 @@ import { PHOTOS_GET } from "../../../services/api";
 import FeedPhotosItem from "../FeedPhotosItem";
 import Error from "../../Error";
 import Loading from "../../Loading";
+import styles from "./feedphotos.module.css";
 
 const FeedPhotos = () => {
   const { data, loading, error, request } = useFecth();
@@ -22,7 +23,7 @@ const FeedPhotos = () => {
   if (loading) return <Loading />;
   if (data)
     return (
-      <ul>
+      <ul className={`${styles.feed} animeLeft`}>
         {data.map((photo) => (
           <FeedPhotosItem key={photo.id} photo={photo} />
         ))}
